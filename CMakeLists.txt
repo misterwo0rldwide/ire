@@ -7,6 +7,11 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 
 add_executable(ire
     src/main.c
+    src/elf/elf_file.c
+)
+
+target_include_directories(ire PRIVATE
+    include
 )
 
 target_compile_options(ire PRIVATE
