@@ -28,7 +28,7 @@ int elf_open(const char *path, ElfFile *elf) {
     return -1;
   }
 
-  elf->header = (Elf64_Ehdr *)elf->data;
+  elf->class = ((unsigned char *)elf->data)[EI_CLASS];
   return 0;
 }
 

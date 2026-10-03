@@ -1,17 +1,17 @@
 #ifndef IRE_ELF_FILE_H
 #define IRE_ELF_FILE_H
 
-#include <stddef.h>
 #include <elf.h>
+#include <stddef.h>
 
 #define FILE_START_OFFSET (0)
 
 typedef struct {
-    int fd;
-    size_t size;
-    void *data;
+  int fd;
+  size_t size;
+  void *data;
 
-    Elf64_Ehdr *header;
+  unsigned char class;
 } ElfFile;
 
 int elf_open(const char *path, ElfFile *elf);
