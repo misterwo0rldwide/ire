@@ -5,6 +5,7 @@
 #include <stddef.h>
 
 #define FILE_START_OFFSET (0)
+#define IS_64(elf) elf->class == ELFCLASS64
 
 typedef struct {
   int fd;
