@@ -8,6 +8,10 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 add_executable(ire
     src/main.c
     src/elf/elf_file.c
+    src/elf/elf_header.c
+    src/elf/elf_program.c
+    src/elf/elf_section.c
+    src/elf/elf_symbol.c
 )
 
 target_include_directories(ire PRIVATE
