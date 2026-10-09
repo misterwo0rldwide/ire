@@ -1,6 +1,8 @@
 
-#include "ire/elf_symbol.h"
+#include <string.h>
+
 #include "ire/elf_section.h"
+#include "ire/elf_symbol.h"
 
 int elf_symbol_table(const ElfFile *elf, ElfSymbolTable *table, uint32_t type) {
   size_t strtab_index;
