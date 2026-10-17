@@ -13,6 +13,7 @@ add_executable(ire
     src/elf/elf_section.c
     src/elf/elf_symbol.c
     src/elf/elf_dynamic.c
+    src/analysis/checksec.c
 )
 
 target_include_directories(ire PRIVATE
