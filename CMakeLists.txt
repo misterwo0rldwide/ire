@@ -12,6 +12,7 @@ add_executable(ire
     src/elf/elf_program.c
     src/elf/elf_section.c
     src/elf/elf_symbol.c
+    src/elf/elf_dynamic.c
 )
 
 target_include_directories(ire PRIVATE
