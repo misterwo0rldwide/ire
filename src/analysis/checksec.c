@@ -7,21 +7,6 @@
 
 #include <string.h>
 
-int elf_checksec(const ElfFile *elf, ChecksecResult *result) {
-  void *data;
-  if (elf == NULL || result == NULL) {
-    return -1;
-  }
-
-  data = (void *)elf_find_program(elf, PT_GNU_STACK);
-  result->nx =
-      data != NULL && !(ELF_PHDR_FIELD(data, IS_64(elf), p_flags) & PF_X);
-  result->pie = ELF_EHDR_FIELD(elf, IS_64(elf), e_type) != ET_EXEC;
-  result->relro = elf_checksec_relro(elf);
-  result->canary = elf_checksec_canary(elf);
-  return 0;
-}
-
 int elf_checksec_relro(const ElfFile *elf) {
   const void *entry;
   Elf64_Xword flags;
@@ -69,5 +54,20 @@ int elf_checksec_canary(const ElfFile *elf) {
     }
   }
 
+  return 0;
+}
+
+int elf_checksec(const ElfFile *elf, ChecksecResult *result) {
+  void *data;
+  if (elf == NULL || result == NULL) {
+    return -1;
+  }
+
+  data = (void *)elf_find_program(elf, PT_GNU_STACK);
+  result->nx =
+      data != NULL && !(ELF_PHDR_FIELD(data, IS_64(elf), p_flags) & PF_X);
+  result->pie = ELF_EHDR_FIELD(elf, IS_64(elf), e_type) == ET_EXEC;
+  result->relro = elf_checksec_relro(elf);
+  result->canary = elf_checksec_canary(elf);
   return 0;
 }
